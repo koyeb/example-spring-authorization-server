@@ -1,0 +1,23 @@
+# auth-koyeb/auth-server/src/main/resources/application.yaml
+server.port: 8099
+spring:
+  sql:
+    init:
+      mode: always
+  datasource:
+    url: ${DATABASE_URL}
+    username: koyeb-adm
+    password: ${DATABASE_PASSWORD}
+  security.oauth2.authorizationserver.client:
+    koyeb-client:
+      require-authorization-consent: false
+      registration:
+        client-authentication-methods: "client_secret_basic"
+        client-id: auth-client
+        client-secret: "{bcrypt}$2a$10$jdJGhzsiIqYFpjJiYWMl/eKDOd8vdyQis2aynmFN0dgJ53XvpzzwC"
+        redirect-uris:
+          - "http://127.0.0.1:8080/login/oauth2/code/spring"
+          - "${AUTH_CLIENT_URL}/login/oauth2/code/spring"
+        authorization-grant-types: "authorization_code"
+        scopes: "user.read,user.write,openid"
+server.forward-headers-strategy: framework
