@@ -66,33 +66,29 @@ If you want to customize and enhance this application, you need to fork this rep
 
 If you used the **Deploy to Koyeb** button, you can simply link your service to your forked repository to be able to push changes.  Alternatively, you can manually create the application as described below.
 
-On the [Koyeb Control Panel](//app.koyeb.com/apps), click the **Create App** button to go to the App creation page.
+On the [Koyeb Control Panel](//app.koyeb.com/apps), on the **Overview** tab, click the **Create Web Service** button to begin.
 
 For the `auth-server` application:
 
-1. Select `GitHub` as the deployment method to use.
+1. Select **GitHub** as the deployment method.
 2. In the repositories list, select the repository you just forked.
-3. Name the Service `auth-server`.
-4. Specify the branch to deploy, in this case `main`.
-5. Expand the **Build and deployment settings** section and click the **Work directory** toggle to enable it.  In the associated field, type `auth-server`.
-6. Expand the **Advanced** and **Environment variables** sections.  Add the following variables:
+3. Expand the **Builder** section and click the **Work directory** toggle to enable it.  In the associated field, type `auth-server`.
+4. Expand the **Environment variables** section.  Add the following variables:
     * `DATABASE_URL`: The URL where your PostgreSQL database is available.  This should begin with `jdbc:postgresql://` and not include the username or password.
     * `DATABASE_PASSWORD`: The password for your PostgreSQL database.
     * `AUTH_CLIENT_URL`: The URL where the `auth-client` application will be deployed.  If you are planning to deploy as described below, this will take the form of: `https://auth-client-<YOUR_KOYEB_ORG>.koyeb.app`.
-7. Set the App name to `auth-server`.
-8. Click **Deploy**.
+5. Set the App and Service names to `auth-server`.
+6. Click **Deploy**.
 
 Next, deploy the `auth-client` application with the following steps:
 
-1. Select `GitHub` as the deployment method to use.
+1. Select **GitHub** as the deployment method.
 2. In the repositories list, select the repository you just forked.
-3. Name the Service `auth-client`.
-4. Specify the branch to deploy, in this case `main`.
-5. Expand the **Build and deployment settings** section and click the **Work directory** toggle to enable it.  In the associated field, type `auth-client`.
-6. Expand the **Advanced** and **Environment variables** sections.  Add the following variables:
+3. Expand the **Builder** section and click the **Work directory** toggle to enable it.  In the associated field, type `auth-client`.
+4. Expand the **Environment variables** section.  Add the following variables:
     * `AUTH_SERVER_URL`: The URL where the `auth-server` application is deployed.  If you deployed as described above, this will take the form of: `https://auth-server-<YOUR_KOYEB_ORG>.koyeb.app`.
-7. Set the App name to `auth-client`.
-8. Click **Deploy**.
+5. Set the App and Service names to `auth-client`.
+6. Click **Deploy**.
 
 By visiting the URL for the client you should be redirected to the server for authentication.
 
